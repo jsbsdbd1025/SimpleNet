@@ -7,5 +7,4 @@ enum class HttpMethod(val method: String) {
 
     GET("GET"), POST("POST")
 
-
 }
