@@ -16,6 +16,8 @@ public abstract class Request<T> implements Comparable<Request<T>> {
 
     private static final String DEFAULT_PARAMS_ENCODING = "UTF-8";
 
+    public static final String HEADER_CONTENT_TYPE = "Content-type";
+
     protected int mSerialNumber = 0;
 
     protected Priority mPriority = Priority.NORMAL;
@@ -73,12 +75,29 @@ public abstract class Request<T> implements Comparable<Request<T>> {
         return "application/x-www-form-urlencoded;charset=" + getParamsEncoding();
     }
 
+
+    public Map<String, String> getHeaders() {
+        return mHeaders;
+    }
+
+    public HttpMethod getHttpMethod() {
+        return mHttpMethod;
+    }
+
     public byte[] getBody() {
         Map<String, String> params = getParams();
         if (params != null && params.size() > 0) {
             return encodeParameters(params, getParamsEncoding());
         }
         return null;
+    }
+
+    public String getUrl() {
+        return mUrl;
+    }
+
+    public boolean isShouldCache() {
+        return mShouldCache;
     }
 
     private byte[] encodeParameters(Map<String, String> params, String paramsEncoding) {
