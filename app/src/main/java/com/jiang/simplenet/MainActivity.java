@@ -22,12 +22,8 @@ public class MainActivity extends AppCompatActivity {
         tvHello = findViewById(R.id.tv_hello);
 
         Map<String, String> params = new HashMap<>();
-        params.put("pushregid", "empty");
-        params.put("password", "123456");
-        params.put("account", "15538307252");
-        params.put("desc", "%7B%22client%22%3A%22android%22%7D");
-        String url = "http://mobile.dev.idaqi.com/iext/gov/mobile/UserController/login.do";
-        StringRequest request = new StringRequest(HttpMethod.GET, url, params, new Request.RequestListener() {
+        String url = "https://www.baidu.com";
+        StringRequest request = new StringRequest(HttpMethod.POST, url, params, new Request.RequestListener() {
             @Override
             public void onComplete(int stCode, Object reponse, String errMsg) {
                 tvHello.setText("Hello Net");

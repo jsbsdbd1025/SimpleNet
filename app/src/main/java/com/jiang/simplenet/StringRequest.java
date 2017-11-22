@@ -22,6 +22,7 @@ public class StringRequest extends Request<String> {
         String string = new String(response.getRawData());
 
 
+
         return string;
     }
 }
