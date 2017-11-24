@@ -2,6 +2,10 @@ package com.jiang.simpleokhttp;
 
 import android.support.annotation.Nullable;
 
+import com.jiang.simpleokhttp.call.Call;
+import com.jiang.simpleokhttp.call.RealCall;
+import com.jiang.simpleokhttp.request.Request;
+
 import java.net.Proxy;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +16,7 @@ import java.util.List;
  * Created by knowing on 2017/11/22.
  */
 
-public class OkHttpClient {
+public class OkHttpClient implements Call.Factory {
 
     //定义一个不可变的协议List
     static final List<Protocol> DEFAULT_PROTOCOLS = Collections.unmodifiableList(Arrays.asList(Protocol.HTTP_2, Protocol.HTTP_1_1));
@@ -42,6 +46,25 @@ public class OkHttpClient {
         this.networkInterceptors = Collections.unmodifiableList(builder.networkInterceptors);
 
         this.eventListenerFactory = builder.eventListenerFactory;
+    }
+
+
+    public List<Interceptor> interceptors() {
+        return interceptors;
+    }
+
+    public EventListener.Factory eventListenerFactory() {
+        return eventListenerFactory;
+    }
+
+    @Override
+    public Call newCall(Request request) {
+        return RealCall.newRealCall(this, request);
+    }
+
+
+    public Dispatcher dispatcher() {
+        return dispatcher;
     }
 
 

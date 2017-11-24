@@ -32,7 +32,7 @@ public class Headers {
 
 
         /**
-         * 对key，value进行验证 保证不出现ascii外的字符
+         * 对key，value进行验证 保证不出现ascii码外的字符
          *
          * @param name
          * @param value

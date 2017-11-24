@@ -24,6 +24,10 @@ public class Request {
         this.body = builder.body;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
     public static class Builder {
 
         String url;
@@ -56,6 +60,13 @@ public class Request {
             return method(HttpMethod.POST.getMethod(), body);
         }
 
+
+        public Builder url(String url) {
+            if (url == null) throw new NullPointerException("url == null");
+
+            this.url = url;
+            return this;
+        }
 
         public Builder method(String method, @Nullable RequestBody body) {
             if (method == null) throw new NullPointerException("method == null");
